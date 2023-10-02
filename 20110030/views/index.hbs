@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/styles.css">    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
+    <script src="/scripts/script.js"></script>
+</head>
+<body>
+    {{!-- overlay to recolor the background when show form --}}
+    <div id="overlay"></div>
+    <h1>{{title}}</h1>
+    <button id="btnShowAdd" class="button">Add a new post</button>
+    <div id="postContainer">
+        <div id="output"></div>
+        <script  type="text/x-handlebars-template" id="post-template">
+                {{#each postData}}
+                    <div id="postData">
+                        <div id="postId">{{id}}</div>
+                        <button class="btnShowEdit" data-id="{{id}}">Edit</button>
+                        <button class="btnShowDelete" data-id="{{id}}">Delete</button>
+                        <h3 id="postName">{{name}}</h3>
+                        <div id="postContent">{{content}}</div>
+                        <p>-----------------Comments----------------</p>
+                        <div id="postComment" class="comment">
+                        <ul>
+                            {{#each comments}}
+                            <li>{{this}}</li>
+                            {{/each}}
+                        </ul>
+                        </div>                        
+                        <input class="commentContent{{id}}"  placeholder="Let a comment here" required>
+                        <button class="btnComment" data-id="{{id}}">Comment</button>
+                    </div>
+                {{/each}}
+        </script>
+    </div>
+
+    <form id="addForm" method="post" class="form">
+        <label>{{lblTitleAdd}}</label>
+        <button id="btnCloseAdd">X</button>
+        <br>
+        <br>
+        <label>{{lblName}}</label>
+        <br>
+        <input id="addName" placeholder="{{inputName}}">
+        <br>
+        <br>
+        <label>{{lblContent}}</label>
+        <br>
+        <textarea id="addContent" placeholder="{{inputContent}}"></textarea>
+        <br>
+        <br>
+        <button id="btnAdd" class="button">Add</button>
+    </form>
+
+    <form id="editForm" method="post" class="form">
+        <label>{{lblTitleEdit}}</label>
+        <button id="btnCloseEdit">X</button>
+        <br>
+        <br>
+        <label>{{lblName}}</label>
+        <br>
+        <input id="editName" placeholder="{{inputName}}">
+        <br>
+        <br>
+        <label>{{lblContent}}</label>
+        <br>
+        <textarea id="editContent" placeholder="{{inputContent}}"></textarea>
+        <br>
+        <br>
+        <button id="btnEdit" class="button">Edit</button>
+    </form>
+
+    <form id="deleteForm" method="post" class="form">
+        <label>{{lblTitleDelete}}</label>
+        <br>
+        <br>
+        <label>{{lblDelete}}</label>
+        <button id="btnDelete" class="button">Delete</button>
+        <button id="btnCancel" class="button">Cancel</button>
+    </form>
+</body>
+</html>
